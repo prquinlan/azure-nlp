@@ -5,13 +5,31 @@ import com.azure.ai.textanalytics.models.DocumentSentiment;
 import com.azure.ai.textanalytics.models.SentenceSentiment;
 import com.azure.core.credential.AzureKeyCredential;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class InitiateNLP
 {
-    public static void main(String [] args)
+    private static String key;
+    private static String endpoint;
+
+    public static void main(String [] args) throws IOException
     {
 
+        String filename=args[0];
+
+        InputStream input = new FileInputStream(filename);
+
+        Properties prop = new Properties();
+        // load a properties file
+        prop.load(input);
+
+        key = prop.getProperty("key");
+        endpoint = prop.getProperty("endpoint");
         //You will create these methods later in the quickstart.
-        TextAnalyticsClient client = authenticateClient("b95e184bd952443bb592910c38771a18", "https://ccnlptest.cognitiveservices.azure.com/");
+        TextAnalyticsClient client = authenticateClient(key, endpoint);
 
         recognizeEntitiesExample(client);
         System.out.println("***");

@@ -39,7 +39,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>SampleProfiler</mainClass>
+                            <mainClass>InitiateNLP</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
